@@ -1,0 +1,148 @@
+<div>
+  <h2 id="page-heading" data-cy="DistribuidoraHeading">
+    <span jhiTranslate="distribuidoraApp.distribuidora.home.title">Distribuidoras</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="distribuidoraApp.distribuidora.home.refreshListLabel">Atualizar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-distribuidora"
+        [routerLink]="['/distribuidora/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="distribuidoraApp.distribuidora.home.createLabel">Criar novo Distribuidora</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (distribuidoras().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="distribuidoraApp.distribuidora.home.notFound">Nenhum Distribuidora encontrado</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="distribuidoraApp.distribuidora.id">Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nome">
+              <div class="d-flex">
+                <span jhiTranslate="distribuidoraApp.distribuidora.nome">Nome</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cep">
+              <div class="d-flex">
+                <span jhiTranslate="distribuidoraApp.distribuidora.cep">Cep</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cidade">
+              <div class="d-flex">
+                <span jhiTranslate="distribuidoraApp.distribuidora.cidade">Cidade</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bairro">
+              <div class="d-flex">
+                <span jhiTranslate="distribuidoraApp.distribuidora.bairro">Bairro</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="rua">
+              <div class="d-flex">
+                <span jhiTranslate="distribuidoraApp.distribuidora.rua">Rua</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numero">
+              <div class="d-flex">
+                <span jhiTranslate="distribuidoraApp.distribuidora.numero">Numero</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="referencia">
+              <div class="d-flex">
+                <span jhiTranslate="distribuidoraApp.distribuidora.referencia">Referencia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="estado">
+              <div class="d-flex">
+                <span jhiTranslate="distribuidoraApp.distribuidora.estado">Estado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="detalhes">
+              <div class="d-flex">
+                <span jhiTranslate="distribuidoraApp.distribuidora.detalhes">Detalhes</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (distribuidora of distribuidoras(); track trackId(distribuidora)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/distribuidora', distribuidora.id, 'view']">{{ distribuidora.id }}</a>
+              </td>
+              <td>{{ distribuidora.nome }}</td>
+              <td>{{ distribuidora.cep }}</td>
+              <td>{{ distribuidora.cidade }}</td>
+              <td>{{ distribuidora.bairro }}</td>
+              <td>{{ distribuidora.rua }}</td>
+              <td>{{ distribuidora.numero }}</td>
+              <td>{{ distribuidora.referencia }}</td>
+              <td>{{ distribuidora.estado }}</td>
+              <td>{{ distribuidora.detalhes }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/distribuidora', distribuidora.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizar</span>
+                  </a>
+
+                  <a [routerLink]="['/distribuidora', distribuidora.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(distribuidora)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Excluir</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

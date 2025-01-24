@@ -1,0 +1,32 @@
+{
+  "distribuidoraApp": {
+    "distribuidora": {
+      "home": {
+        "title": "Distribuidoras",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Distribuidora",
+        "createOrEditLabel": "Create or edit a Distribuidora",
+        "notFound": "No Distribuidoras found"
+      },
+      "created": "A new Distribuidora is created with identifier {{ param }}",
+      "updated": "A Distribuidora is updated with identifier {{ param }}",
+      "deleted": "A Distribuidora is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Distribuidora {{ id }}?"
+      },
+      "detail": {
+        "title": "Distribuidora"
+      },
+      "id": "Id",
+      "nome": "Nome",
+      "cep": "Cep",
+      "cidade": "Cidade",
+      "bairro": "Bairro",
+      "rua": "Rua",
+      "numero": "Numero",
+      "referencia": "Referencia",
+      "estado": "Estado",
+      "detalhes": "Detalhes"
+    }
+  }
+}

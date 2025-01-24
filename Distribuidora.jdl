@@ -1,0 +1,31 @@
+entity Distribuidora {
+  id Integer
+  nome String required minlength(3)
+  cep String required minlength(8) maxlength(8)
+  cidade String required
+  bairro String required
+  rua String required
+  numero Integer required
+  referencia String
+  estado String required maxlength(2)
+  detalhes String minlength(3)
+}
+
+entity Produto {
+	id Integer
+	nome String required
+   valor Float required
+   quantidade Integer required
+}
+
+entity Tipo {
+	id Integer
+	name String required minlength(2)
+}
+
+relationship ManyToOne {
+	Produto{tipo(id)} to Tipo
+	Produto{distribuidora(id)} to Distribuidora
+}
+
+paginate Tipo, Produto with infinite-scroll

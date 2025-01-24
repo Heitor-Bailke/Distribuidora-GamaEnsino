@@ -1,0 +1,118 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-produto-heading" data-cy="ProdutoCreateUpdateHeading" jhiTranslate="distribuidoraApp.produto.home.createOrEditLabel">
+        Criar ou editar Produto
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="distribuidoraApp.produto.id">Id</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let nomeRef = editForm.get('nome')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_nome" jhiTranslate="distribuidoraApp.produto.nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+          @if (nomeRef.invalid && (nomeRef.dirty || nomeRef.touched)) {
+            <div>
+              @if (editForm.get('nome')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let valorRef = editForm.get('valor')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_valor" jhiTranslate="distribuidoraApp.produto.valor">Valor</label>
+          <input type="number" class="form-control" name="valor" id="field_valor" data-cy="valor" formControlName="valor" />
+          @if (valorRef.invalid && (valorRef.dirty || valorRef.touched)) {
+            <div>
+              @if (editForm.get('valor')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              <small class="form-text text-danger" [hidden]="!editForm.get('valor')?.errors?.number" jhiTranslate="entity.validation.number"
+                >Este campo é do tipo numérico.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let quantidadeRef = editForm.get('quantidade')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_quantidade" jhiTranslate="distribuidoraApp.produto.quantidade">Quantidade</label>
+          <input
+            type="number"
+            class="form-control"
+            name="quantidade"
+            id="field_quantidade"
+            data-cy="quantidade"
+            formControlName="quantidade"
+          />
+          @if (quantidadeRef.invalid && (quantidadeRef.dirty || quantidadeRef.touched)) {
+            <div>
+              @if (editForm.get('quantidade')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('quantidade')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo é do tipo numérico.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tipo" jhiTranslate="distribuidoraApp.produto.tipo">Tipo</label>
+          <select class="form-control" id="field_tipo" data-cy="tipo" name="tipo" formControlName="tipo" [compareWith]="compareTipo">
+            <option [ngValue]="null"></option>
+            @for (tipoOption of tiposSharedCollection; track $index) {
+              <option [ngValue]="tipoOption">{{ tipoOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_distribuidora" jhiTranslate="distribuidoraApp.produto.distribuidora">Distribuidora</label>
+          <select
+            class="form-control"
+            id="field_distribuidora"
+            data-cy="distribuidora"
+            name="distribuidora"
+            formControlName="distribuidora"
+            [compareWith]="compareDistribuidora"
+          >
+            <option [ngValue]="null"></option>
+            @for (distribuidoraOption of distribuidorasSharedCollection; track $index) {
+              <option [ngValue]="distribuidoraOption">{{ distribuidoraOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

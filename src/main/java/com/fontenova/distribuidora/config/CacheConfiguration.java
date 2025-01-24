@@ -50,6 +50,9 @@ public class CacheConfiguration {
             createCache(cm, com.fontenova.distribuidora.domain.User.class.getName());
             createCache(cm, com.fontenova.distribuidora.domain.Authority.class.getName());
             createCache(cm, com.fontenova.distribuidora.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.fontenova.distribuidora.domain.Distribuidora.class.getName());
+            createCache(cm, com.fontenova.distribuidora.domain.Produto.class.getName());
+            createCache(cm, com.fontenova.distribuidora.domain.Tipo.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

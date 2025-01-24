@@ -1,0 +1,184 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-distribuidora-heading"
+        data-cy="DistribuidoraCreateUpdateHeading"
+        jhiTranslate="distribuidoraApp.distribuidora.home.createOrEditLabel"
+      >
+        Criar ou editar Distribuidora
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="distribuidoraApp.distribuidora.id">Id</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let nomeRef = editForm.get('nome')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_nome" jhiTranslate="distribuidoraApp.distribuidora.nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+          @if (nomeRef.invalid && (nomeRef.dirty || nomeRef.touched)) {
+            <div>
+              @if (editForm.get('nome')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              @if (editForm.get('nome')?.errors?.minlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: '3' }"
+                  >Este campo deve ter pelo menos 3 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        @let cepRef = editForm.get('cep')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_cep" jhiTranslate="distribuidoraApp.distribuidora.cep">Cep</label>
+          <input type="text" class="form-control" name="cep" id="field_cep" data-cy="cep" formControlName="cep" />
+          @if (cepRef.invalid && (cepRef.dirty || cepRef.touched)) {
+            <div>
+              @if (editForm.get('cep')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              @if (editForm.get('cep')?.errors?.minlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: '8' }"
+                  >Este campo deve ter pelo menos 8 caracteres.</small
+                >
+              }
+              @if (editForm.get('cep')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '8' }"
+                  >Este campo não pode ter mais de 8 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        @let cidadeRef = editForm.get('cidade')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_cidade" jhiTranslate="distribuidoraApp.distribuidora.cidade">Cidade</label>
+          <input type="text" class="form-control" name="cidade" id="field_cidade" data-cy="cidade" formControlName="cidade" />
+          @if (cidadeRef.invalid && (cidadeRef.dirty || cidadeRef.touched)) {
+            <div>
+              @if (editForm.get('cidade')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let bairroRef = editForm.get('bairro')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_bairro" jhiTranslate="distribuidoraApp.distribuidora.bairro">Bairro</label>
+          <input type="text" class="form-control" name="bairro" id="field_bairro" data-cy="bairro" formControlName="bairro" />
+          @if (bairroRef.invalid && (bairroRef.dirty || bairroRef.touched)) {
+            <div>
+              @if (editForm.get('bairro')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let ruaRef = editForm.get('rua')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_rua" jhiTranslate="distribuidoraApp.distribuidora.rua">Rua</label>
+          <input type="text" class="form-control" name="rua" id="field_rua" data-cy="rua" formControlName="rua" />
+          @if (ruaRef.invalid && (ruaRef.dirty || ruaRef.touched)) {
+            <div>
+              @if (editForm.get('rua')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let numeroRef = editForm.get('numero')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_numero" jhiTranslate="distribuidoraApp.distribuidora.numero">Numero</label>
+          <input type="number" class="form-control" name="numero" id="field_numero" data-cy="numero" formControlName="numero" />
+          @if (numeroRef.invalid && (numeroRef.dirty || numeroRef.touched)) {
+            <div>
+              @if (editForm.get('numero')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('numero')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo é do tipo numérico.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_referencia" jhiTranslate="distribuidoraApp.distribuidora.referencia">Referencia</label>
+          <input
+            type="text"
+            class="form-control"
+            name="referencia"
+            id="field_referencia"
+            data-cy="referencia"
+            formControlName="referencia"
+          />
+        </div>
+
+        @let estadoRef = editForm.get('estado')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_estado" jhiTranslate="distribuidoraApp.distribuidora.estado">Estado</label>
+          <input type="text" class="form-control" name="estado" id="field_estado" data-cy="estado" formControlName="estado" />
+          @if (estadoRef.invalid && (estadoRef.dirty || estadoRef.touched)) {
+            <div>
+              @if (editForm.get('estado')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              @if (editForm.get('estado')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '2' }"
+                  >Este campo não pode ter mais de 2 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        @let detalhesRef = editForm.get('detalhes')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_detalhes" jhiTranslate="distribuidoraApp.distribuidora.detalhes">Detalhes</label>
+          <input type="text" class="form-control" name="detalhes" id="field_detalhes" data-cy="detalhes" formControlName="detalhes" />
+          @if (detalhesRef.invalid && (detalhesRef.dirty || detalhesRef.touched)) {
+            <div>
+              @if (editForm.get('detalhes')?.errors?.minlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.minlength" [translateValues]="{ min: '3' }"
+                  >Este campo deve ter pelo menos 3 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salvar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

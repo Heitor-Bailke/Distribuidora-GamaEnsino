@@ -1,0 +1,32 @@
+{
+  "distribuidoraApp": {
+    "distribuidora": {
+      "home": {
+        "title": "Distribuidoras",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Distribuidora",
+        "createOrEditLabel": "Criar ou editar Distribuidora",
+        "notFound": "Nenhum Distribuidora encontrado"
+      },
+      "created": "Um novo Distribuidora foi criado com o identificador {{ param }}",
+      "updated": "Um Distribuidora foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Distribuidora foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Distribuidora {{ id }}?"
+      },
+      "detail": {
+        "title": "Distribuidora"
+      },
+      "id": "Id",
+      "nome": "Nome",
+      "cep": "Cep",
+      "cidade": "Cidade",
+      "bairro": "Bairro",
+      "rua": "Rua",
+      "numero": "Numero",
+      "referencia": "Referencia",
+      "estado": "Estado",
+      "detalhes": "Detalhes"
+    }
+  }
+}
