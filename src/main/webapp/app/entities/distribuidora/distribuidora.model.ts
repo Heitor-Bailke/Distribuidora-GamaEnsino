@@ -1,6 +1,8 @@
 export interface IDistribuidora {
   id: number;
   nome?: string | null;
+  cnpj?: string | null;
+  contato?: number | null;
   cep?: string | null;
   cidade?: string | null;
   bairro?: string | null;

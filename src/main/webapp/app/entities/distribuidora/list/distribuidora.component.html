@@ -47,6 +47,20 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
+            <th scope="col" jhiSortBy="cnpj">
+              <div class="d-flex">
+                <span jhiTranslate="distribuidoraApp.distribuidora.cnpj">Cnpj</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contato">
+              <div class="d-flex">
+                <span jhiTranslate="distribuidoraApp.distribuidora.contato">Contato</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
             <th scope="col" jhiSortBy="cep">
               <div class="d-flex">
                 <span jhiTranslate="distribuidoraApp.distribuidora.cep">Cep</span>
@@ -113,6 +127,8 @@
                 <a [routerLink]="['/distribuidora', distribuidora.id, 'view']">{{ distribuidora.id }}</a>
               </td>
               <td>{{ distribuidora.nome }}</td>
+              <td>{{ distribuidora.cnpj }}</td>
+              <td>{{ distribuidora.contato }}</td>
               <td>{{ distribuidora.cep }}</td>
               <td>{{ distribuidora.cidade }}</td>
               <td>{{ distribuidora.bairro }}</td>

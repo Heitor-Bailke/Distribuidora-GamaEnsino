@@ -1,6 +1,8 @@
 entity Distribuidora {
   id Integer
   nome String required minlength(3)
+  cnpj String required maxlength(20)
+  contato Integer required
   cep String required minlength(8) maxlength(8)
   cidade String required
   bairro String required

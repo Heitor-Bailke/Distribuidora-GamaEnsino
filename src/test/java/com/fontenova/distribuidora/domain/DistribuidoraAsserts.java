@@ -48,6 +48,8 @@ public class DistribuidoraAsserts {
         assertThat(expected)
             .as("Verify Distribuidora relevant properties")
             .satisfies(e -> assertThat(e.getNome()).as("check nome").isEqualTo(actual.getNome()))
+            .satisfies(e -> assertThat(e.getCnpj()).as("check cnpj").isEqualTo(actual.getCnpj()))
+            .satisfies(e -> assertThat(e.getContato()).as("check contato").isEqualTo(actual.getContato()))
             .satisfies(e -> assertThat(e.getCep()).as("check cep").isEqualTo(actual.getCep()))
             .satisfies(e -> assertThat(e.getCidade()).as("check cidade").isEqualTo(actual.getCidade()))
             .satisfies(e -> assertThat(e.getBairro()).as("check bairro").isEqualTo(actual.getBairro()))

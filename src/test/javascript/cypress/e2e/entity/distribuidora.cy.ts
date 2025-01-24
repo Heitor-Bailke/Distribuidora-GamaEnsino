@@ -16,13 +16,15 @@ describe('Distribuidora e2e test', () => {
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
   const distribuidoraSample = {
-    nome: 'indeed',
-    cep: 'slipper ',
-    cidade: 'regal',
-    bairro: 'even',
-    rua: 'ha awesome chunter',
-    numero: 1708,
-    estado: 'th',
+    nome: 'ha awesome chunter',
+    cnpj: 'alive',
+    contato: 26939,
+    cep: 'inside r',
+    cidade: 'brr fun however',
+    bairro: 'now uniform forswear',
+    rua: 'atomize acidic',
+    numero: 11935,
+    estado: 'ye',
   };
 
   let distribuidora;
@@ -165,32 +167,38 @@ describe('Distribuidora e2e test', () => {
     });
 
     it('should create an instance of Distribuidora', () => {
-      cy.get(`[data-cy="nome"]`).type('engage');
-      cy.get(`[data-cy="nome"]`).should('have.value', 'engage');
+      cy.get(`[data-cy="nome"]`).type('oh leading dreamily');
+      cy.get(`[data-cy="nome"]`).should('have.value', 'oh leading dreamily');
 
-      cy.get(`[data-cy="cep"]`).type('owlishly');
-      cy.get(`[data-cy="cep"]`).should('have.value', 'owlishly');
+      cy.get(`[data-cy="cnpj"]`).type('merge rationalise de');
+      cy.get(`[data-cy="cnpj"]`).should('have.value', 'merge rationalise de');
 
-      cy.get(`[data-cy="cidade"]`).type('cycle');
-      cy.get(`[data-cy="cidade"]`).should('have.value', 'cycle');
+      cy.get(`[data-cy="contato"]`).type('6736');
+      cy.get(`[data-cy="contato"]`).should('have.value', '6736');
 
-      cy.get(`[data-cy="bairro"]`).type('rationalise desk');
-      cy.get(`[data-cy="bairro"]`).should('have.value', 'rationalise desk');
+      cy.get(`[data-cy="cep"]`).type('palatabl');
+      cy.get(`[data-cy="cep"]`).should('have.value', 'palatabl');
 
-      cy.get(`[data-cy="rua"]`).type('structure');
-      cy.get(`[data-cy="rua"]`).should('have.value', 'structure');
+      cy.get(`[data-cy="cidade"]`).type('concrete');
+      cy.get(`[data-cy="cidade"]`).should('have.value', 'concrete');
 
-      cy.get(`[data-cy="numero"]`).type('19369');
-      cy.get(`[data-cy="numero"]`).should('have.value', '19369');
+      cy.get(`[data-cy="bairro"]`).type('ha furthermore');
+      cy.get(`[data-cy="bairro"]`).should('have.value', 'ha furthermore');
 
-      cy.get(`[data-cy="referencia"]`).type('concrete');
-      cy.get(`[data-cy="referencia"]`).should('have.value', 'concrete');
+      cy.get(`[data-cy="rua"]`).type('boldly under lobotomise');
+      cy.get(`[data-cy="rua"]`).should('have.value', 'boldly under lobotomise');
 
-      cy.get(`[data-cy="estado"]`).type('ha');
-      cy.get(`[data-cy="estado"]`).should('have.value', 'ha');
+      cy.get(`[data-cy="numero"]`).type('15');
+      cy.get(`[data-cy="numero"]`).should('have.value', '15');
 
-      cy.get(`[data-cy="detalhes"]`).type('boldly under lobotomise');
-      cy.get(`[data-cy="detalhes"]`).should('have.value', 'boldly under lobotomise');
+      cy.get(`[data-cy="referencia"]`).type('onset slipper why');
+      cy.get(`[data-cy="referencia"]`).should('have.value', 'onset slipper why');
+
+      cy.get(`[data-cy="estado"]`).type('re');
+      cy.get(`[data-cy="estado"]`).should('have.value', 're');
+
+      cy.get(`[data-cy="detalhes"]`).type('even');
+      cy.get(`[data-cy="detalhes"]`).should('have.value', 'even');
 
       cy.get(entityCreateSaveButtonSelector).click();
 

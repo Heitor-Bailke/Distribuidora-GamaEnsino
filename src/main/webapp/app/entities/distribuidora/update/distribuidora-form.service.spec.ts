@@ -21,6 +21,8 @@ describe('Distribuidora Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             nome: expect.any(Object),
+            cnpj: expect.any(Object),
+            contato: expect.any(Object),
             cep: expect.any(Object),
             cidade: expect.any(Object),
             bairro: expect.any(Object),
@@ -40,6 +42,8 @@ describe('Distribuidora Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             nome: expect.any(Object),
+            cnpj: expect.any(Object),
+            contato: expect.any(Object),
             cep: expect.any(Object),
             cidade: expect.any(Object),
             bairro: expect.any(Object),

@@ -19,6 +19,8 @@
       },
       "id": "Id",
       "nome": "Nome",
+      "cnpj": "Cnpj",
+      "contato": "Contato",
       "cep": "Cep",
       "cidade": "Cidade",
       "bairro": "Bairro",

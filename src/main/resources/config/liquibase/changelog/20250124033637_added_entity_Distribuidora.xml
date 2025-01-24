@@ -17,6 +17,12 @@
             <column name="nome" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
+            <column name="cnpj" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+            <column name="contato" type="integer">
+                <constraints nullable="false" />
+            </column>
             <column name="cep" type="varchar(8)">
                 <constraints nullable="false" />
             </column>
@@ -63,6 +69,8 @@
                   usePreparedStatements="true">
             <column name="id" type="numeric"/>
             <column name="nome" type="string"/>
+            <column name="cnpj" type="string"/>
+            <column name="contato" type="numeric"/>
             <column name="cep" type="string"/>
             <column name="cidade" type="string"/>
             <column name="bairro" type="string"/>

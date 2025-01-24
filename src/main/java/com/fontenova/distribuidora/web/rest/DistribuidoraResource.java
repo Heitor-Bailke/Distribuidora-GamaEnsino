@@ -126,6 +126,12 @@ public class DistribuidoraResource {
                 if (distribuidora.getNome() != null) {
                     existingDistribuidora.setNome(distribuidora.getNome());
                 }
+                if (distribuidora.getCnpj() != null) {
+                    existingDistribuidora.setCnpj(distribuidora.getCnpj());
+                }
+                if (distribuidora.getContato() != null) {
+                    existingDistribuidora.setContato(distribuidora.getContato());
+                }
                 if (distribuidora.getCep() != null) {
                     existingDistribuidora.setCep(distribuidora.getCep());
                 }

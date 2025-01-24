@@ -35,6 +35,12 @@ class DistribuidoraResourceIT {
     private static final String DEFAULT_NOME = "AAAAAAAAAA";
     private static final String UPDATED_NOME = "BBBBBBBBBB";
 
+    private static final String DEFAULT_CNPJ = "AAAAAAAAAA";
+    private static final String UPDATED_CNPJ = "BBBBBBBBBB";
+
+    private static final Integer DEFAULT_CONTATO = 1;
+    private static final Integer UPDATED_CONTATO = 2;
+
     private static final String DEFAULT_CEP = "AAAAAAAA";
     private static final String UPDATED_CEP = "BBBBBBBB";
 
@@ -90,6 +96,8 @@ class DistribuidoraResourceIT {
     public static Distribuidora createEntity() {
         return new Distribuidora()
             .nome(DEFAULT_NOME)
+            .cnpj(DEFAULT_CNPJ)
+            .contato(DEFAULT_CONTATO)
             .cep(DEFAULT_CEP)
             .cidade(DEFAULT_CIDADE)
             .bairro(DEFAULT_BAIRRO)
@@ -109,6 +117,8 @@ class DistribuidoraResourceIT {
     public static Distribuidora createUpdatedEntity() {
         return new Distribuidora()
             .nome(UPDATED_NOME)
+            .cnpj(UPDATED_CNPJ)
+            .contato(UPDATED_CONTATO)
             .cep(UPDATED_CEP)
             .cidade(UPDATED_CIDADE)
             .bairro(UPDATED_BAIRRO)
@@ -177,6 +187,38 @@ class DistribuidoraResourceIT {
         long databaseSizeBeforeTest = getRepositoryCount();
         // set the field null
         distribuidora.setNome(null);
+
+        // Create the Distribuidora, which fails.
+
+        restDistribuidoraMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(distribuidora)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkCnpjIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        distribuidora.setCnpj(null);
+
+        // Create the Distribuidora, which fails.
+
+        restDistribuidoraMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(om.writeValueAsBytes(distribuidora)))
+            .andExpect(status().isBadRequest());
+
+        assertSameRepositoryCount(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    void checkContatoIsRequired() throws Exception {
+        long databaseSizeBeforeTest = getRepositoryCount();
+        // set the field null
+        distribuidora.setContato(null);
 
         // Create the Distribuidora, which fails.
 
@@ -296,6 +338,8 @@ class DistribuidoraResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(distribuidora.getId().intValue())))
             .andExpect(jsonPath("$.[*].nome").value(hasItem(DEFAULT_NOME)))
+            .andExpect(jsonPath("$.[*].cnpj").value(hasItem(DEFAULT_CNPJ)))
+            .andExpect(jsonPath("$.[*].contato").value(hasItem(DEFAULT_CONTATO)))
             .andExpect(jsonPath("$.[*].cep").value(hasItem(DEFAULT_CEP)))
             .andExpect(jsonPath("$.[*].cidade").value(hasItem(DEFAULT_CIDADE)))
             .andExpect(jsonPath("$.[*].bairro").value(hasItem(DEFAULT_BAIRRO)))
@@ -319,6 +363,8 @@ class DistribuidoraResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(distribuidora.getId().intValue()))
             .andExpect(jsonPath("$.nome").value(DEFAULT_NOME))
+            .andExpect(jsonPath("$.cnpj").value(DEFAULT_CNPJ))
+            .andExpect(jsonPath("$.contato").value(DEFAULT_CONTATO))
             .andExpect(jsonPath("$.cep").value(DEFAULT_CEP))
             .andExpect(jsonPath("$.cidade").value(DEFAULT_CIDADE))
             .andExpect(jsonPath("$.bairro").value(DEFAULT_BAIRRO))
@@ -350,6 +396,8 @@ class DistribuidoraResourceIT {
         em.detach(updatedDistribuidora);
         updatedDistribuidora
             .nome(UPDATED_NOME)
+            .cnpj(UPDATED_CNPJ)
+            .contato(UPDATED_CONTATO)
             .cep(UPDATED_CEP)
             .cidade(UPDATED_CIDADE)
             .bairro(UPDATED_BAIRRO)
@@ -439,10 +487,12 @@ class DistribuidoraResourceIT {
 
         partialUpdatedDistribuidora
             .nome(UPDATED_NOME)
+            .cnpj(UPDATED_CNPJ)
+            .contato(UPDATED_CONTATO)
             .cep(UPDATED_CEP)
-            .cidade(UPDATED_CIDADE)
             .bairro(UPDATED_BAIRRO)
             .numero(UPDATED_NUMERO)
+            .referencia(UPDATED_REFERENCIA)
             .estado(UPDATED_ESTADO)
             .detalhes(UPDATED_DETALHES);
 
@@ -477,6 +527,8 @@ class DistribuidoraResourceIT {
 
         partialUpdatedDistribuidora
             .nome(UPDATED_NOME)
+            .cnpj(UPDATED_CNPJ)
+            .contato(UPDATED_CONTATO)
             .cep(UPDATED_CEP)
             .cidade(UPDATED_CIDADE)
             .bairro(UPDATED_BAIRRO)

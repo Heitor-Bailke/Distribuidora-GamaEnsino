@@ -15,6 +15,17 @@
       "fieldValidateRulesMinlength": "3"
     },
     {
+      "fieldName": "cnpj",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "contato",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
       "fieldName": "cep",
       "fieldType": "String",
       "fieldValidateRules": ["required", "minlength", "maxlength"],

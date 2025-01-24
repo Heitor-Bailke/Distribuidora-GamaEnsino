@@ -37,6 +37,43 @@
           }
         </div>
 
+        @let cnpjRef = editForm.get('cnpj')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_cnpj" jhiTranslate="distribuidoraApp.distribuidora.cnpj">Cnpj</label>
+          <input type="text" class="form-control" name="cnpj" id="field_cnpj" data-cy="cnpj" formControlName="cnpj" />
+          @if (cnpjRef.invalid && (cnpjRef.dirty || cnpjRef.touched)) {
+            <div>
+              @if (editForm.get('cnpj')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              @if (editForm.get('cnpj')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '20' }"
+                  >Este campo não pode ter mais de 20 caracteres.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        @let contatoRef = editForm.get('contato')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_contato" jhiTranslate="distribuidoraApp.distribuidora.contato">Contato</label>
+          <input type="number" class="form-control" name="contato" id="field_contato" data-cy="contato" formControlName="contato" />
+          @if (contatoRef.invalid && (contatoRef.dirty || contatoRef.touched)) {
+            <div>
+              @if (editForm.get('contato')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">O campo é obrigatório.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('contato')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >Este campo é do tipo numérico.</small
+              >
+            </div>
+          }
+        </div>
+
         @let cepRef = editForm.get('cep')!;
         <div class="mb-3">
           <label class="form-label" for="field_cep" jhiTranslate="distribuidoraApp.distribuidora.cep">Cep</label>

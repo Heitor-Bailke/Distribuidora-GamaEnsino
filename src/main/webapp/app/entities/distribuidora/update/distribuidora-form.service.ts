@@ -19,6 +19,8 @@ type DistribuidoraFormDefaults = Pick<NewDistribuidora, 'id'>;
 type DistribuidoraFormGroupContent = {
   id: FormControl<IDistribuidora['id'] | NewDistribuidora['id']>;
   nome: FormControl<IDistribuidora['nome']>;
+  cnpj: FormControl<IDistribuidora['cnpj']>;
+  contato: FormControl<IDistribuidora['contato']>;
   cep: FormControl<IDistribuidora['cep']>;
   cidade: FormControl<IDistribuidora['cidade']>;
   bairro: FormControl<IDistribuidora['bairro']>;
@@ -48,6 +50,12 @@ export class DistribuidoraFormService {
       ),
       nome: new FormControl(distribuidoraRawValue.nome, {
         validators: [Validators.required, Validators.minLength(3)],
+      }),
+      cnpj: new FormControl(distribuidoraRawValue.cnpj, {
+        validators: [Validators.required, Validators.maxLength(20)],
+      }),
+      contato: new FormControl(distribuidoraRawValue.contato, {
+        validators: [Validators.required],
       }),
       cep: new FormControl(distribuidoraRawValue.cep, {
         validators: [Validators.required, Validators.minLength(8), Validators.maxLength(8)],

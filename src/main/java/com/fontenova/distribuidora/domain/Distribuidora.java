@@ -29,6 +29,15 @@ public class Distribuidora implements Serializable {
     private String nome;
 
     @NotNull
+    @Size(max = 20)
+    @Column(name = "cnpj", length = 20, nullable = false)
+    private String cnpj;
+
+    @NotNull
+    @Column(name = "contato", nullable = false)
+    private Integer contato;
+
+    @NotNull
     @Size(min = 8, max = 8)
     @Column(name = "cep", length = 8, nullable = false)
     private String cep;
@@ -87,6 +96,32 @@ public class Distribuidora implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCnpj() {
+        return this.cnpj;
+    }
+
+    public Distribuidora cnpj(String cnpj) {
+        this.setCnpj(cnpj);
+        return this;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public Integer getContato() {
+        return this.contato;
+    }
+
+    public Distribuidora contato(Integer contato) {
+        this.setContato(contato);
+        return this;
+    }
+
+    public void setContato(Integer contato) {
+        this.contato = contato;
     }
 
     public String getCep() {
@@ -218,6 +253,8 @@ public class Distribuidora implements Serializable {
         return "Distribuidora{" +
             "id=" + getId() +
             ", nome='" + getNome() + "'" +
+            ", cnpj='" + getCnpj() + "'" +
+            ", contato=" + getContato() +
             ", cep='" + getCep() + "'" +
             ", cidade='" + getCidade() + "'" +
             ", bairro='" + getBairro() + "'" +
